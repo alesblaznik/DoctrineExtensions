@@ -396,7 +396,7 @@ class SortableListener extends MappedEventSubscriber
         foreach ($this->relocations as $hash => $relocation) {
             $config = $this->getConfiguration($em, $relocation['name']);
             foreach ($relocation['deltas'] as $delta) {
-                if ($delta['start'] > $this->maxPositions[$hash] || $delta['delta'] == 0) {
+                if ($delta['start'] > $this->maxPositions[$hash] || $delta['delta'] == 0 || null === $delta['start']) {
                     continue;
                 }
                 $ea->updatePositions($relocation, $delta, $config);
